@@ -85,9 +85,12 @@ Default times: hello 3s ,hold  10s	|Hello : 1s hold time  3s||
 
 ## 2.1 Cấu hình keepalived
 
+```echo "net.ipv4.ip_nonlocal_bind=1" >> /etc/sysctl.conf```
+```sysctl -p```
+
 # VIP PMT MASTER
 
-! Configuration File for keepalived
+```! Configuration File for keepalived
 
 global_defs {
    notification_email {
@@ -101,8 +104,8 @@ global_defs {
 
     vrrp_script chk_nginx {
     script "/usr/local/nagios/libexec/check_tcp -H 127.0.0.1 -p 80"
-    interval 2
-    weight 2
+    interval 2 # check every 2 seconds
+    weight 2   # add 2 points of prio if OK
 } 
 
 vrrp_instance VI_1 {
@@ -110,7 +113,7 @@ vrrp_instance VI_1 {
     smtp_alert 
     interface p2p1
     virtual_router_id 50
-    priority 101
+    priority 101      # 101 on master, 100 on backup
     advert_int 1
     authentication {
         auth_type PASS
