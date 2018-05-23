@@ -2,6 +2,9 @@
 
 VRRP (Virtual Router Redundancy Protocol) là giao thức được mô tả trong RFC3768, nó cho phép sử dụng chung 1 địa chỉ IP gateway cho một nhóm router. Nếu router chính bị “tèo”, ngay lập tức các con router khác sẽ biết và với một số các nguyên tắc bầu chọn do VRRP quy định, các con còn lại sẽ chọn ra 1 con chính khác nắm giữ địa chỉ IP gateway đã được cấu hình từ trước, và lưu lượng từ người dùng sẽ đi qua con gateway mới này => Đảm bảo dịch vụ của người sử dụng thông suốt, không bị gián đoạn.
 
+<p align="center"><img src="https://github.com/ajino2k/VRRP/blob/master/keepalived-vrrp-network1.png"></p>
+ <p align="center"> hình 1: ảnh minh họa </p>
+
 ## 1. Một số khái niệm cần nhớ khi làm việc và trao đổi về VRRP
 
 - VRRP Router: Router sử dụng VRRP. Có thể có 1 hay nhiều VRRP Router đồng thời.
